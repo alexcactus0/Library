@@ -35,12 +35,13 @@ function addBookToLibrary(title, pages, author, id, read) {
     newBook.author = formAuthor.value;
     newBook.read = getSelectedRadio()
 
-    myLibrary.push(newBook);+
+    myLibrary.push(newBook);
 }
 
 function getSelectedRadio() {
-    const selected = document.querySelectorAll('#read');
-    return selected ? selected.value : null;
+    const selected = document.querySelector('input[name="read"]:checked');
+    return selected ? selected.value : "Not specified";
+    
 }
 
 function displayBooks() {
@@ -52,11 +53,13 @@ function displayBooks() {
         card.classList.add('book-class');
         card.dataset.id = book.id;
 
-        card.innerHTML = `<h3>${book.title}</h3>
+        card.innerHTML = `<div class="book">
+        <h3>Title: ${book.title}</h3>
         <p>${book.pages} pages</p>
         <p>by ${book.author}</p>
         <p>id: ${book.id}</p>
-        <p>status: ${book.read}</p>`;
+        <p>status: ${book.read}</p>
+        </div>`;
 
         container.appendChild(card);
     });

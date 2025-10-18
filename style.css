@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 500px 250px;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.all {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10em;
+}
+
+.sidebar {
+    border: solid 2px black;
+    height: 100vh;
+    width: 200px;
+    position: fixed;
+}
+
+#library {
+    border: solid 2px black;
+    display: flex;
+    gap: 20px;
+}
+
+.book {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border: solid 2px black;
+}
