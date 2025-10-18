@@ -1,7 +1,13 @@
+
 const myLibrary = [];
 
-function Book(titel, pages, author, id, read) {
-    this.titel = titel;
+const createBtn = document.querySelector("[data-open-modal]");
+const submit = document.querySelector("[data-create-modal]");
+const closeBtn = document.querySelector("[data-close-modal]");
+const modal = document.querySelector("[data-modal]");
+
+function Book(title, pages, author, id, read) {
+    this.title = title;
     this.pages = pages;
     this.author = author;
     this.read = read;
@@ -12,12 +18,32 @@ Book.prototype.readStatus = function() {
     this.read = !this.read;
 };
 
-function addBookToLibrary(titel, pages, author, id, read) {
-    const newBook = new Book(titel, pages, author, id, read);
-    myLibrary.push(newBook);
+function addBookToLibrary(title, pages, author, id, read) {
+    const newBook = new Book(title, pages, author, id, read);
+
+    const formTitle = document.getElementById('title');
+    const formAuthor = document.getElementById('author');
+    const formPages = document.getElementById('pages');
+    
+    if (!formTitle.value || !formPages.value || !formAuthor.value
+    ) {
+        throw "Please fill up the rest!";
+    }
+    
+    newBook.title = formTitle.value;
+    newBook.pages = formPages.value;
+    newBook.author = formAuthor.value;
+    newBook.read = getSelectedRadio()
+
+    myLibrary.push(newBook);+
 }
 
-function addBooks() {
+function getSelectedRadio() {
+    const selected = document.querySelectorAll('#read');
+    return selected ? selected.value : null;
+}
+
+function displayBooks() {
     const container = document.querySelector('#library');
     container.innerHTML = "";
 
@@ -26,13 +52,27 @@ function addBooks() {
         card.classList.add('book-class');
         card.dataset.id = book.id;
 
-        card.innerHTML = "Hello";
+        card.innerHTML = `<h3>${book.title}</h3>
+        <p>${book.pages} pages</p>
+        <p>by ${book.author}</p>
+        <p>id: ${book.id}</p>
+        <p>status: ${book.read}</p>`;
 
         container.appendChild(card);
     });
 }
 
-const createBtn = document.querySelector('.create');
+
 createBtn.addEventListener('click', () => {
-    addBooks();
+    modal.showModal()
+})
+
+submit.addEventListener('click', () => {
+    addBookToLibrary()
+    displayBooks()
+})
+
+closeBtn.addEventListener('click', () => {
+    modal.close()
+    form.reset()
 })

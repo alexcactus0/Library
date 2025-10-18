@@ -7,6 +7,35 @@
     <title>Library</title>
 </head>
 <body>
-    
+    <h1>My Library</h1>
+    <button data-open-modal>Create</button>
+    <dialog data-modal>
+        <form method="dialog" id="form">
+            <div>Create your Book</div>
+
+            <label for="title">Book Title:</label>
+            <input type="text" id="title" required>
+
+            <label for="pages">Pages:</label>
+            <input type="number" id="pages" required>
+
+            <label for="author">Author:</label>
+            <input type="text" id="author" required>
+
+            <div>Have you read this Book?</div>
+            <label for="read">Yes</label>
+            <input type="radio" name="status" id="read" value="read">
+            <label for="not-read">No</label>
+            <input type="radio" name="status" id="read" value="not-read">
+            <label for="in-progress">In Progress</label>
+            <input type="radio" name="status" id="read" value="in-progress">
+
+            <button data-create-modal>Create</button>
+            <button data-close-modal>Cancel</button>
+        </form>
+        
+    </dialog>
+
+    <div id="library"></div>
 </body>
 </html>
