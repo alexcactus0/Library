@@ -57,7 +57,7 @@ function displayBooks() {
         <h3>Title: ${book.title}</h3>
         <p>${book.pages} pages</p>
         <p>by ${book.author}</p>
-        <p>id: ${book.id}</p>
+        <p>id: <br>${book.id}</p>
         <p>status: ${book.read}</p>
         </div>`;
 
@@ -79,3 +79,26 @@ closeBtn.addEventListener('click', () => {
     modal.close()
     form.reset()
 })
+
+const libraryBtn = document.getElementById('library-btn');
+const sidebar = document.getElementById('sidebar');
+
+libraryBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('show');
+})
+
+
+
+const body = document.body;
+
+let sidebarOpen = false;
+
+libraryBtn.addEventListener('click', () => {
+    if (!sidebarOpen) {
+        body.style.gridTemplateColumns = '300px 1fr';
+        sidebarOpen = true;
+    } else {
+        body.style.gridTemplateColumns = '0 1fr';
+        sidebarOpen = false;
+    }
+});
