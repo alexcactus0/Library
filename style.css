@@ -23,7 +23,7 @@ body {
     font-family: 'Roboto';
     transition: grid-template-columns 0.3s ease;
     color: var(--cream_txt);
-    background-color: gray;
+    background-color: black;
 }
 
 svg {
@@ -50,6 +50,7 @@ svg {
     top: 0;
     position: sticky;
     padding: 30px;
+    z-index: 1000;
 }
 
 .sidebar {
@@ -123,17 +124,20 @@ svg {
 }
 
 .book {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    padding: 1.2em;
     border: solid 2px #36211D;
     border-radius: 4px;
     background-color: #383838;
     color: var(--books_txt);
 }
 
+.book_header {
+    display: flex;
+    flex-direction: column;
+}
+
 button {
+    cursor: pointer;
     width: 150px;
     height: 50px;
     border: none;

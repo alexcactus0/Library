@@ -18,8 +18,8 @@ Book.prototype.readStatus = function() {
     this.read = !this.read;
 };
 
-function addBookToLibrary(title, pages, author, id, read) {
-    const newBook = new Book(title, pages, author, id, read);
+function addBookToLibrary(title, pages, author, read) {
+    const newBook = new Book(title, pages, author, read);
 
     const formTitle = document.getElementById('title');
     const formAuthor = document.getElementById('author');
@@ -27,7 +27,7 @@ function addBookToLibrary(title, pages, author, id, read) {
     
     if (!formTitle.value || !formPages.value || !formAuthor.value
     ) {
-        throw "Please fill up the rest!";
+        alert("Please fill up the rest!");
     }
     
     newBook.title = formTitle.value;
@@ -53,12 +53,16 @@ function displayBooks() {
         card.classList.add('book-class');
         card.dataset.id = book.id;
 
-        card.innerHTML = `<div class="book">
-        <h3>Title: ${book.title}</h3>
-        <p>${book.pages} pages</p>
-        <p>by ${book.author}</p>
-        <p>id: <br>${book.id}</p>
-        <p>status: ${book.read}</p>
+        card.innerHTML = `
+        <div class="book">
+            <div class="book_header">
+                <h3>Title: ${book.title}</h3>
+                <p>by ${book.author}</p>
+            </div>
+            <div class="book_main">
+            <p>${book.pages} pages</p>
+            </div>
+            <p>status: ${book.read}</p>
         </div>`;
 
         container.appendChild(card);
@@ -83,22 +87,11 @@ closeBtn.addEventListener('click', () => {
 const libraryBtn = document.getElementById('library-btn');
 const sidebar = document.getElementById('sidebar');
 
-libraryBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('show');
-})
-
-
-
 const body = document.body;
-
 let sidebarOpen = false;
 
 libraryBtn.addEventListener('click', () => {
-    if (!sidebarOpen) {
-        body.style.gridTemplateColumns = '300px 1fr';
-        sidebarOpen = true;
-    } else {
-        body.style.gridTemplateColumns = '0 1fr';
-        sidebarOpen = false;
-    }
+  sidebarOpen = !sidebarOpen;
+  body.style.gridTemplateColumns = sidebarOpen ? '300px 1fr' : '0 1fr';
+  sidebar.classList.toggle('show', sidebarOpen);
 });
