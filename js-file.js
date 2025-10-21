@@ -6,7 +6,7 @@ const submit = document.querySelector("[data-create-modal]");
 const closeBtn = document.querySelector("[data-close-modal]");
 const modal = document.querySelector("[data-modal]");
 
-function Book(title, pages, author, id, read) {
+function Book(title, pages, author, read) {
     this.title = title;
     this.pages = pages;
     this.author = author;

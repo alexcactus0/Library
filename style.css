@@ -124,9 +124,10 @@ svg {
 }
 
 .book {
+    box-shadow: 6px 3px 10px black;
+    border: solid 2px var(--border_blue);
     padding: 1.2em;
-    border: solid 2px #36211D;
-    border-radius: 4px;
+    border-radius: 8px;
     background-color: #383838;
     color: var(--books_txt);
 }
