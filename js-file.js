@@ -6,35 +6,33 @@ const submit = document.querySelector("[data-create-modal]");
 const closeBtn = document.querySelector("[data-close-modal]");
 const modal = document.querySelector("[data-modal]");
 
-function Book(title, pages, author, read) {
-    this.title = title;
-    this.pages = pages;
-    this.author = author;
-    this.read = read;
-    this.id = crypto.randomUUID();
+
+class Book {
+    constructor(title, pages, author, read) {
+        this.title = title;
+        this.pages = pages;
+        this.author = author;
+        this.read = read;
+        this.id = crypto.randomUUID();
+    }
+
+    readStatus() {
+        this.read = !this.read;
+    }
 }
 
-Book.prototype.readStatus = function() {
-    this.read = !this.read;
-};
-
-function addBookToLibrary(title, pages, author, read) {
-    const newBook = new Book(title, pages, author, read);
-
-    const formTitle = document.getElementById('title');
-    const formAuthor = document.getElementById('author');
-    const formPages = document.getElementById('pages');
+function addBookToLibrary() {
+    const formTitle = document.getElementById('title').value;
+    const formAuthor = document.getElementById('author').value;
+    const formPages = document.getElementById('pages').value;
+    const read = getSelectedRadio();
     
-    if (!formTitle.value || !formPages.value || !formAuthor.value
-    ) {
+    if (!formTitle || !formPages || !formAuthor) {
         alert("Please fill up the rest!");
+        return;
     }
     
-    newBook.title = formTitle.value;
-    newBook.pages = formPages.value;
-    newBook.author = formAuthor.value;
-    newBook.read = getSelectedRadio()
-
+    const newBook = new Book(formTitle, formAuthor, formPages, read);
     myLibrary.push(newBook);
 }
 
